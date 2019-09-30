@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "387639227287",
+    "firebase_url": "https://emailapp-44b37.firebaseio.com",
+    "project_id": "emailapp-44b37",
+    "storage_bucket": "emailapp-44b37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387639227287:android:30a8510f8458eb70374ad2",
+        "android_client_info": {
+          "package_name": "com.example.email_flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "387639227287-itj7omvdhjq42v4i6929vntl3if3iurg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.email_flutter_app",
+            "certificate_hash": "df2e9f73eaa653be043a1fcbb21d41fec99b18d3"
+          }
+        },
+        {
+          "client_id": "387639227287-8oksd60gpn8pq1vc32o5cau9efpejr1o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK4uuywltOfXsPS9P1yuVI9U4VTEoep_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "387639227287-8oksd60gpn8pq1vc32o5cau9efpejr1o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
