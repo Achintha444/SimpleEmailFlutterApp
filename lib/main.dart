@@ -6,6 +6,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'Constants/StaticContants.dart';
+import 'Constants/PageTransistions/SlideRightRoute.dart';
+
+import 'Objects/User.dart';
+
+import 'SecondInterface.dart';
 
 void main() => runApp(
       new MaterialApp(
@@ -14,6 +19,35 @@ void main() => runApp(
     );
 
 class FirstInterface extends StatelessWidget {
+  User user;
+
+  // Future<FirebaseUser> _signIn() async {
+  //   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //   final GoogleSignIn _googleSignIn = new GoogleSignIn();
+  //   GoogleSignInAccount _googleSignInAccount = await _googleSignIn.signIn();
+  //   GoogleSignInAuthentication _googleSignInAuthentication =
+  //       await _googleSignInAccount.authentication;
+  //   AuthCredential _credential = GoogleAuthProvider.getCredential(
+  //     accessToken: _googleSignInAuthentication.accessToken,
+  //     idToken: _googleSignInAuthentication.idToken,
+  //   );
+
+  //   FirebaseUser user = (await _auth.signInWithCredential(_credential)).user;
+  //   print(user.displayName + "\n");
+  //   return user;
+  //   //FirebaseUser _user = await _auth
+  // }
+
+  void _login(BuildContext tempContext) async {
+    user = (await User.signIn());
+    Navigator.push(
+      tempContext,
+      SlideRightRoute(
+        page: SecondInterface(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
@@ -95,7 +129,7 @@ class FirstInterface extends StatelessWidget {
                 shape: new RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                onPressed: () {},
+                onPressed: () {_login(context);},
                 color: StaticContants.mainColor,
                 padding: EdgeInsets.only(
                   top: _height / 80,
