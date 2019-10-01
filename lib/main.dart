@@ -20,7 +20,7 @@ void main() => runApp(
 
 class FirstInterface extends StatelessWidget {
   User user;
-  
+
   void _login(BuildContext tempContext) async {
     user = (await User.signIn());
     Navigator.push(
@@ -61,6 +61,7 @@ class FirstInterface extends StatelessWidget {
                     fontWeight: FontWeight.w900,
                     fontStyle: FontStyle.italic),
               ),
+            
             ),
             new Container(
               padding: EdgeInsets.only(
