@@ -1,8 +1,11 @@
 import 'package:email_flutter_app/Constants/StaticContants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as prefix0;
 
 import '../PasswordChangeInterface.dart';
+import './Drawer.dart';
 
+@protected
 class BodyOf extends StatelessWidget {
   void _login(BuildContext tempContext) {
     print("adsda");
@@ -70,11 +73,7 @@ class BodyOf extends StatelessWidget {
           ],
         ),
       ),
-      drawer: new Drawer(
-        child: new Container(
-          child: new Text("data"),
-        ),
-      ),
+      drawer: new DrawerOf(),
       body: new TabBarView(
         children: <Widget>[
           new Container(),
