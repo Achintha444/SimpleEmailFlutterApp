@@ -7,6 +7,8 @@ class User {
   String _email;
   String _displayName;
   String _password;
+  static final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
   User._({String photoUrl, String email, String displayName}) {
     this._photoUrl = photoUrl;
@@ -26,9 +28,6 @@ class User {
   }
 
   static Future<User> signIn() async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final GoogleSignIn _googleSignIn = new GoogleSignIn();
-
     GoogleSignInAccount _googleSignInAccount = await _googleSignIn.signIn();
     GoogleSignInAuthentication _googleSignInAuthentication =
         await _googleSignInAccount.authentication;
@@ -47,6 +46,11 @@ class User {
     ));
     print("ASASASAS "+tempUser.displayName + "\n");
     return user;
+  }
+
+  static void signOut(){
+    _googleSignIn.signOut();
+    User._user = null;
   }
 
   static User get getInstance {
