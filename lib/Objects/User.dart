@@ -6,6 +6,7 @@ class User {
   String _photoUrl;
   String _email;
   String _displayName;
+  String _password;
 
   User._({String photoUrl, String email, String displayName}) {
     this._photoUrl = photoUrl;
@@ -48,7 +49,29 @@ class User {
     return user;
   }
 
-  static User getInstance() {
+  static User get getInstance {
     return User._user;
   }
+
+  set setPassword(String password){
+    User._user._password = password;
+  }
+
+  String get getPhotoUrl {
+    return User._user._photoUrl;
+  }
+
+  String get getEmail {
+    return User._user._email;
+  }
+
+  String get getDisplayName {
+    return User._user._displayName;
+  }
+
+  String get getPassword {
+    return User._user._password;
+  }
+
+
 }

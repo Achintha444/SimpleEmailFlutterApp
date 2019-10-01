@@ -20,24 +20,7 @@ void main() => runApp(
 
 class FirstInterface extends StatelessWidget {
   User user;
-
-  // Future<FirebaseUser> _signIn() async {
-  //   final FirebaseAuth _auth = FirebaseAuth.instance;
-  //   final GoogleSignIn _googleSignIn = new GoogleSignIn();
-  //   GoogleSignInAccount _googleSignInAccount = await _googleSignIn.signIn();
-  //   GoogleSignInAuthentication _googleSignInAuthentication =
-  //       await _googleSignInAccount.authentication;
-  //   AuthCredential _credential = GoogleAuthProvider.getCredential(
-  //     accessToken: _googleSignInAuthentication.accessToken,
-  //     idToken: _googleSignInAuthentication.idToken,
-  //   );
-
-  //   FirebaseUser user = (await _auth.signInWithCredential(_credential)).user;
-  //   print(user.displayName + "\n");
-  //   return user;
-  //   //FirebaseUser _user = await _auth
-  // }
-
+  
   void _login(BuildContext tempContext) async {
     user = (await User.signIn());
     Navigator.push(
