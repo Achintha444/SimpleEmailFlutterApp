@@ -34,9 +34,11 @@ class PasswordChangeInterface extends StatelessWidget {
             ),
             child: new InputTextField(
               controller: _passwordController,
+              
               icon: Icon(Icons.lock),
               labelText: "Enter the Password",
               obscure: true,
+              helperText: "Enter your accounts password",
             ),
           ),
           new Container(

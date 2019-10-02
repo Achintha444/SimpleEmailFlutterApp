@@ -8,15 +8,18 @@ class InputTextField extends StatelessWidget {
   String _labelText;
   Icon _icon;
   Color _borederColor = StaticContants.secondaryDarkerColor;
+  String _helperText;
   InputTextField(
       {TextEditingController controller,
       bool obscure,
       String labelText,
+      String helperText = "",
       Icon icon = null}) {
     this._controller = controller;
     this._obscure = obscure;
     this._labelText = labelText;
     this._icon = icon;
+    this._helperText = helperText;
   }
 
   @override
@@ -24,16 +27,19 @@ class InputTextField extends StatelessWidget {
     return new TextField(
       controller: this._controller,
       cursorColor: StaticContants.secondaryDarkerColor,
+     // keyboardType: TextInputType.multiline,
+     // maxLines: null,
       decoration: new InputDecoration(
           focusColor: StaticContants.secondaryDarkerColor,
           hoverColor: StaticContants.secondaryLighterColor,
           fillColor: StaticContants.secondaryDarkerColor,
-          helperText: "Enter your emails password",
+          helperText: this._helperText,
           //icon: this._icon,
           prefixIcon: this._icon,
           //hintText: "Enter the password",
           labelText: this._labelText,
           //alignLabelWithHint: true,
+          
           border: new OutlineInputBorder(
             borderRadius: new BorderRadius.circular(25),
             borderSide: new BorderSide(
@@ -44,5 +50,7 @@ class InputTextField extends StatelessWidget {
       textAlign: TextAlign.left,
       obscureText: this._obscure,
     );
+  
   }
 }
+  

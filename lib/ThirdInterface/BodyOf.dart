@@ -1,4 +1,5 @@
 import 'package:email_flutter_app/Constants/StaticContants.dart';
+import 'package:email_flutter_app/ThirdInterface/EmailOf.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 
@@ -76,6 +77,7 @@ class BodyOf extends StatelessWidget {
       drawer: new DrawerOf(),
       body: new TabBarView(
         children: <Widget>[
+          //new EmailOf(),
           new Container(),
           new PasswordChangeInterface(
             login: _login,
