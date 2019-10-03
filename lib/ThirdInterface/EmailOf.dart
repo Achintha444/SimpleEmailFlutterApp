@@ -1,5 +1,8 @@
 import 'package:email_flutter_app/Constants/Layout/InputTextField.dart';
+import 'package:email_flutter_app/Constants/Layout/PreLoader/ModelRoundedProgressBar.dart';
+import 'package:email_flutter_app/Constants/Layout/PreLoader/ProgressBarHandler.dart';
 import 'package:email_flutter_app/Constants/StaticContants.dart';
+import 'package:email_flutter_app/Objects/Email/Email.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 
@@ -12,11 +15,29 @@ class _EmailOfState extends State<EmailOf> {
   TextEditingController _reicpentController = new TextEditingController();
   TextEditingController _subjectController = new TextEditingController();
   TextEditingController _emailController = new TextEditingController();
+  ProgressBarHandler _handler;
+
+  Future _sendEmail() async {
+     _handler.show();
+    Email _email = new Email(
+      subject: _subjectController.text,
+      body: _emailController.text,
+      recipentEmail: _reicpentController.text,
+    );
+    _subjectController.text = "";
+    _reicpentController.text = "";
+    _emailController.text = "";
+    bool _temp = null;
+    _temp =(await _email.sendEmail());
+    _handler.dismiss();
+    print (_temp.toString());
+  }
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    return new SingleChildScrollView(
+    SingleChildScrollView _singleChildScrollView = new SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.only(
           top: _height / 30,
@@ -32,7 +53,7 @@ class _EmailOfState extends State<EmailOf> {
               obscure: false,
             ),
             new InputTextField(
-              controller: _reicpentController,
+              controller: _subjectController,
               icon: Icon(Icons.subject),
               labelText: "Subject",
               obscure: false,
@@ -45,8 +66,7 @@ class _EmailOfState extends State<EmailOf> {
                 keyboardType: TextInputType.multiline,
                 //minLines:4,
                 maxLines: (_height / 60).toInt(),
-                decoration:new InputDecoration(
-
+                decoration: new InputDecoration(
                     focusColor: StaticContants.secondaryDarkerColor,
                     hoverColor: StaticContants.secondaryLighterColor,
                     fillColor: StaticContants.secondaryDarkerColor,
@@ -88,7 +108,7 @@ class _EmailOfState extends State<EmailOf> {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 onPressed: () {
-                  null;
+                  _sendEmail();
                 },
                 color: StaticContants.mainColor,
                 padding: EdgeInsets.only(
@@ -100,6 +120,18 @@ class _EmailOfState extends State<EmailOf> {
           ],
         ),
       ),
+    );
+    ModalRoundedProgressBar _progressBar = ModalRoundedProgressBar(
+      //getting the handler
+      handleCallback: (handler) {
+        _handler = handler;
+      },
+    );
+    return Stack(
+      children: <Widget>[
+        _singleChildScrollView,
+        _progressBar,
+      ],
     );
   }
 }
