@@ -6,16 +6,42 @@ import 'Objects/User.dart';
 
 class PasswordChangeInterface extends StatelessWidget {
   Function _loginTemp;
-  TextEditingController _passwordController = new TextEditingController();
+  TextEditingController _passwordController;
 
-  PasswordChangeInterface({@required Function login,}) {
+  PasswordChangeInterface({
+    @required Function login,
+    @required TextEditingController passwordController,
+  }) {
     this._loginTemp = login;
+    this._passwordController = passwordController;
   }
 
-  void _login(BuildContext tempContext){
-    User.getInstance.setPassword = _passwordController.text;
-    _passwordController.text = "";
-    this._loginTemp(tempContext);
+  _login(BuildContext tempContext) {
+    if (_passwordController.text == "" || _passwordController.text == null) {
+      return showDialog(
+        context: tempContext,
+        child: new AlertDialog(
+          title: new Text("Field is Empty!"),
+          content: new Text("Password cannot be empty!"),
+          backgroundColor: Color.fromARGB(220, 117, 218, 255),
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(15)),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              textColor: StaticContants.secondaryDarkerColor,
+              onPressed: () {
+                Navigator.of(tempContext).pop(false);
+              },
+            ),
+          ],
+        ),
+      );
+    } else {
+      User.getInstance.setPassword = _passwordController.text;
+      //_passwordController.text = "";
+      this._loginTemp(tempContext);
+    }
   }
 
   @override
@@ -34,7 +60,6 @@ class PasswordChangeInterface extends StatelessWidget {
             ),
             child: new InputTextField(
               controller: _passwordController,
-              
               icon: Icon(Icons.lock),
               labelText: "Enter the Password",
               obscure: true,
@@ -78,7 +103,6 @@ class PasswordChangeInterface extends StatelessWidget {
               ),
             ),
           ),
-        
         ],
       ),
     );

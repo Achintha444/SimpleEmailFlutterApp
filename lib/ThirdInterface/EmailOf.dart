@@ -1,3 +1,4 @@
+import 'package:email_flutter_app/Constants/Layout/BaseAlertDialog.dart';
 import 'package:email_flutter_app/Constants/Layout/InputTextField.dart';
 import 'package:email_flutter_app/Constants/Layout/PreLoader/ModelRoundedProgressBar.dart';
 import 'package:email_flutter_app/Constants/Layout/PreLoader/ProgressBarHandler.dart';
@@ -17,20 +18,83 @@ class _EmailOfState extends State<EmailOf> {
   TextEditingController _emailController = new TextEditingController();
   ProgressBarHandler _handler;
 
-  Future _sendEmail() async {
-     _handler.show();
+  Future _sendEmail(BuildContext tempContext) async {
     Email _email = new Email(
       subject: _subjectController.text,
       body: _emailController.text,
       recipentEmail: _reicpentController.text,
     );
-    _subjectController.text = "";
-    _reicpentController.text = "";
-    _emailController.text = "";
-    bool _temp = null;
-    _temp =(await _email.sendEmail());
-    _handler.dismiss();
-    print (_temp.toString());
+    if (_email.checkIfEmpty()) {
+      return showDialog(
+        context: tempContext,
+        child: new AlertDialog(
+          title: new Text("Fields are Empty!"),
+          content: new Text("Please Fille the fields and try again!"),
+          backgroundColor: Color.fromARGB(220, 117, 218, 255),
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(15)),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              textColor: StaticContants.secondaryDarkerColor,
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+            ),
+          ],
+        ),
+      );
+    } else {
+      _handler.show();
+      _subjectController.text = "";
+      _reicpentController.text = "";
+      _emailController.text = "";
+      bool _temp = null;
+      _temp = (await _email.sendEmail());
+      _handler.dismiss();
+      if (_temp == true) {
+        return showDialog(
+          context: tempContext,
+          child: new AlertDialog(
+            title: new Text("SUCESS"),
+            content: new Text("Email Sent Successfully!"),
+            backgroundColor: Color.fromARGB(220, 117, 218, 255),
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15)),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("OK"),
+                textColor: StaticContants.secondaryDarkerColor,
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+              ),
+            ],
+          ),
+        );
+      } else {
+        return showDialog(
+          context: tempContext,
+          child: new AlertDialog(
+            title: new Text("Faliure"),
+            content: new Text("Email sent failed! \nPlease check your internet connection and Password."),
+            backgroundColor: Color.fromARGB(220, 117, 218, 255),
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(15)),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("OK"),
+                textColor: StaticContants.secondaryDarkerColor,
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+              ),
+            ],
+          ),
+        );
+      }
+      print(_temp.toString());
+    }
   }
 
   @override
@@ -108,7 +172,7 @@ class _EmailOfState extends State<EmailOf> {
                   borderRadius: BorderRadius.circular(30),
                 ),
                 onPressed: () {
-                  _sendEmail();
+                  _sendEmail(context);
                 },
                 color: StaticContants.mainColor,
                 padding: EdgeInsets.only(

@@ -10,7 +10,7 @@ class ModalRoundedProgressBar extends StatefulWidget {
   ModalRoundedProgressBar({
     @required Function handleCallback(ProgressBarHandler handler),
     String message = "",
-    double opacity = 0.7,
+    double opacity = 0.8,
   })  : _textMessage = message,
         _opacity = opacity,
         _handlerCallback = handleCallback;
@@ -44,7 +44,7 @@ class _ModalRoundedProgressBarState extends State<ModalRoundedProgressBar> {
             opacity: widget._opacity,
             child: ModalBarrier(
               dismissible: false,
-              color: Colors.black26,
+              color: Colors.black87,
             ),
           ),
           Center(

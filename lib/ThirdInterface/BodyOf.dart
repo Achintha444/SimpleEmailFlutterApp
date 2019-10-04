@@ -8,6 +8,9 @@ import './Drawer.dart';
 
 @protected
 class BodyOf extends StatelessWidget {
+  static final _scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController _passwordController = new TextEditingController();
+
   void _login(BuildContext tempContext) {
     print("adsda");
   }
@@ -16,7 +19,7 @@ class BodyOf extends StatelessWidget {
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
     double _width = MediaQuery.of(context).size.width;
-    final _scaffoldKey = GlobalKey<ScaffoldState>();
+    
     return new Scaffold(
       key: _scaffoldKey,
       appBar: new AppBar(
@@ -79,8 +82,9 @@ class BodyOf extends StatelessWidget {
         children: <Widget>[
           //new EmailOf(),
           new Container(),
-          new PasswordChangeInterface(
+          PasswordChangeInterface(
             login: _login,
+            passwordController: _passwordController,
           ),
         ],
       ),

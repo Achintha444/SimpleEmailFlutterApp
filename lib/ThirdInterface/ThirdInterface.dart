@@ -11,7 +11,7 @@ class ThirdInterface extends StatefulWidget {
 }
 
 class _ThirdInterdfaceState extends State<ThirdInterface> {
-  static GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  static final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   void _login(BuildContext tempContext) {
     print("adsda");
   }
@@ -25,6 +25,7 @@ class _ThirdInterdfaceState extends State<ThirdInterface> {
       length: 2,
       child: new Scaffold(
         key: _scaffoldKey,
+        //resizeToAvoidBottomPadding: false,
         appBar: new AppBar(
           backgroundColor: StaticContants.mainColor,
           automaticallyImplyLeading: false,

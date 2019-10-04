@@ -1,3 +1,5 @@
+import 'package:email_flutter_app/Constants/Layout/BaseAlertDialog.dart';
+import 'package:email_flutter_app/Constants/Layout/BaseAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -40,20 +42,28 @@ class FirstInterface extends StatelessWidget {
   Future<bool> _exitApp(BuildContext context) {
   return showDialog(
         context: context,
-        child: new AlertDialog(
-          title: new Text('Do you want to exit this application?'),
-          content: new Text('We hate to see you leave...'),
-          actions: <Widget>[
-            new FlatButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: new Text('No'),
-            ),
-            new FlatButton(
-              onPressed: () => SystemNavigator.pop(),
-              child: new Text('Yes'),
-            ),
-          ],
+        child: new BaseAlertDialog(
+          title: "Do you want to exit FAST Email?",
+          content: "Are you sure?",
+          yes: "YES",
+          yesOnPressed: () => SystemNavigator.pop(),
+          no: "NO",
+          noOnPressed: ()=> Navigator.of(context).pop(false),
         ),
+        // child: new AlertDialog(
+        //   title: new Text('Do you want to exit this application?'),
+        //   content: new Text('We hate to see you leave...'),
+        //   actions: <Widget>[
+        //     new FlatButton(
+        //       onPressed: () => Navigator.of(context).pop(false),
+        //       child: new Text('No'),
+        //     ),
+        //     new FlatButton(
+        //       onPressed: () => SystemNavigator.pop(),
+        //       child: new Text('Yes'),
+        //     ),
+        //   ],
+        // ),
       ) ??
       false;
 }

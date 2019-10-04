@@ -1,3 +1,4 @@
+import 'package:email_flutter_app/Constants/StaticContants.dart';
 import 'package:flutter/material.dart';
 
 class BaseAlertDialog extends StatelessWidget {
@@ -13,7 +14,7 @@ class BaseAlertDialog extends StatelessWidget {
   Function _yesOnPressed;
   Function _noOnPressed;
 
-  BaseAlertDialog({String title, String content, Function yesOnPressed, Function noOnPressed, String yes = "Yes", String no = "No"}){
+  BaseAlertDialog({String title, String content, Function yesOnPressed, Function noOnPressed, String yes = "Yes", String no = ""}){
     this._title = title;
     this._content = content;
     this._yesOnPressed = yesOnPressed;
@@ -33,14 +34,14 @@ class BaseAlertDialog extends StatelessWidget {
       actions: <Widget>[
         new FlatButton(
           child: new Text(this._yes),
-          textColor: Colors.greenAccent,
+          textColor: StaticContants.secondaryLighterColor,
           onPressed: () {
             this._yesOnPressed();
           },
         ),
         new FlatButton(
           child: Text(this._no),
-          textColor: Colors.redAccent,
+          textColor: StaticContants.secondaryDarkerColor,
           onPressed: () {
             this._noOnPressed();
           },

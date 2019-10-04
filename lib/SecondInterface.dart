@@ -15,6 +15,7 @@ class SecondInterface extends StatefulWidget {
 }
 
 class _SecondInterfaceState extends State<SecondInterface> {
+  TextEditingController _passwordController = new TextEditingController();
   void _login(BuildContext tempContext) {
     Navigator.push(
       tempContext,
@@ -33,6 +34,7 @@ class _SecondInterfaceState extends State<SecondInterface> {
       backgroundColor: StaticContants.backgroundColor,
       body: new PasswordChangeInterface(
         login: _login,
+        passwordController: _passwordController,
       ),
     );
   }

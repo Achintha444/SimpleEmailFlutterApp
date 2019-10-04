@@ -45,4 +45,11 @@ class Email {
       
     }
   }
+
+  bool checkIfEmpty(){
+    if (((_subject == "") || (_subject==null)) || ((_recipentEmail == "") || (_recipentEmail==null)) || ((_body == "") || (_body==null))){
+      return true;
+    }
+    return false;
+  }
 }
